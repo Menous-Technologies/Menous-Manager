@@ -7,8 +7,8 @@ app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-# apiurl = "http://snehashishlaskar090.pythonanywhere.com/"
-apiurl= 'http://127.0.0.1:8000/'
+apiurl = "http://snehashishlaskar090.pythonanywhere.com/"
+
 
 def convertUserDataToJson(username):
     data = requests.get('{}sites?username={}'.format(apiurl, username)).json()
