@@ -7,8 +7,8 @@ app.config["SESSION_PERMANENT"] = True
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-apiurl = "http://snehashishlaskar090.pythonanywhere.com/"
-# apiurl = "http:/127.0.0.1:8000/"
+# apiurl = "http://snehashishlaskar090.pythonanywhere.com/"
+apiurl = "http://127.0.0.1:8000/"
 
 
 def convertUserDataToJson(username):
@@ -73,11 +73,14 @@ def logout():
     session['password'] = None
     print(session['username'])
     print(session['password'])
-    return redirect('/auth')
+    return redirect('/')
 
 @app.route('/delete', methods=['POST','GET'])
 def delete():
-    return render_template('delete_account.html', sess=True)
+    if request.method == 'POST':
+        return redirect('/deleteusersure')
+    else:
+        return render_template('delete_account.html', sess=True)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -179,8 +182,9 @@ def main():
 @app.route('/deleteusersure', methods=["GET", "POST"])
 def deleteUser():
 
-    requests.delete(f"{apiurl}delete?username={session['username']}")
-    return redirect('/home')
+    req = requests.post(f"{apiurl}delete?username={session['username']}")
+    print(req)
+    return redirect('/logout')
 
 # if __name__ == "__main__":
 #     app.run(debug=True, host = "0.0.0.0", port=80)
