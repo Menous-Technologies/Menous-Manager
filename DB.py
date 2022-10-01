@@ -99,9 +99,9 @@ def deletesite(username, site):
     dataconn.commit()
 
 def deleteuser(username):
-    # query = f"DELETE FROM AUTHDATA WHERE username=:user"
-    # authcursor.execute(query, {'user':username})
-    # authconn.commit()
+    query = f"DELETE FROM AUTHDATA WHERE username=:user"
+    authcursor.execute(query, {'user':username})
+    authconn.commit()
 
     query = f"DROP TABLE {username}"
     datacursor.execute(query)
