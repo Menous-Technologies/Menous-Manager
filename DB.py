@@ -98,12 +98,17 @@ def deletesite(username, site):
     datacursor.execute(query, {'site': site})
     dataconn.commit()
 
-def deleteUser(username):
+def deleteuser(username):
+    # query = f"DELETE FROM AUTHDATA WHERE username=:user"
+    # authcursor.execute(query, {'user':username})
+    # authconn.commit()
+
     query = f"DROP TABLE {username}"
     datacursor.execute(query)
     dataconn.commit()
 
+
+
 startup()
 init_auth_table()
-
 
