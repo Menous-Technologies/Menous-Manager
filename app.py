@@ -8,6 +8,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 apiurl = "http://snehashishlaskar090.pythonanywhere.com/"
+# apiurl = "http:/127.0.0.1:8000/"
 
 
 def convertUserDataToJson(username):
@@ -181,4 +182,5 @@ def deleteUser():
     requests.delete(f"{apiurl}delete?username={session['username']}")
     return redirect('/home')
 
-
+# if __name__ == "__main__":
+#     app.run(debug=True, host = "0.0.0.0", port=80)
